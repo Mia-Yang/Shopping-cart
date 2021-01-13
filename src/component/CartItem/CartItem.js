@@ -23,7 +23,7 @@ function CartItem(props) {
         </div>
       </td>
       <td>{price}</td>
-      <td>total</td>
+      <td>{(quantity * price).toFixed(2)}</td>
     </>
   );
 }
