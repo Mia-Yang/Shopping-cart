@@ -15,7 +15,9 @@ function CartItem(props) {
         <div className="counter">
           <button className="changeUnit">➖</button>
           <span className="quantity">{quantity}</span>
-          <button className="changeUnit">➕</button>
+          <button className="changeUnit" onClick={props.onIncrease}>
+            ➕
+          </button>
         </div>
       </td>
       <td>{price}</td>

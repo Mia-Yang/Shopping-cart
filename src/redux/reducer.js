@@ -33,6 +33,13 @@ export const reducer = (state = initialState, action) => {
     case 'REMOVE_ITEM':
       return state.filter((product) => product.id !== action.id);
 
+    case 'INCREASE_QUANTITY':
+      return state.map((product) =>
+        product.id === action.id
+          ? { ...product, quantity: (product.quantity += 1) }
+          : product
+      );
+
     default:
       return state;
   }

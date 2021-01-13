@@ -3,7 +3,7 @@ import CartItem from '../CartItem/CartItem';
 import './ShoppingCart.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { removeItem } from '../../redux/actions';
+import { removeItem, increaseQuantity } from '../../redux/actions';
 
 class ShoppingCart extends React.Component {
   render() {
@@ -33,6 +33,7 @@ class ShoppingCart extends React.Component {
                 imgUrl={product.imgUrl}
                 price={product.price}
                 onRemove={() => this.props.removeItem(product.id)}
+                onIncrease={() => this.props.increaseQuantity(product.id)}
               />
             </tr>
           ))}
@@ -53,6 +54,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       removeItem,
+      increaseQuantity,
     },
     dispatch
   );
