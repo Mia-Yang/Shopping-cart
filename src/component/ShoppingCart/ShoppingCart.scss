@@ -1,0 +1,23 @@
+.shoppingCart {
+  background-color: white;
+  width: 70%;
+
+  padding: 30px 50px 50px 30px;
+}
+.item {
+  height: 120px;
+  align-self: start;
+  vertical-align: top;
+}
+table {
+  width: 100%;
+}
+
+th {
+  height: 60px;
+}
+
+.cartTitle {
+  display: flex;
+  justify-content: space-between;
+}
