@@ -1,5 +1,6 @@
 import React from 'react';
 import './OrderSummary.scss';
+import { connect } from 'react-redux';
 
 class OrderSummary extends React.Component {
   render() {
@@ -31,4 +32,10 @@ class OrderSummary extends React.Component {
   }
 }
 
-export default OrderSummary;
+function mapStateToProps(state) {
+  return {
+    productList: state,
+  };
+}
+
+export default connect(mapStateToProps)(OrderSummary);

@@ -9,6 +9,7 @@ function CartItem(props) {
       <td>
         <span className="name">{name}</span>
         <span className="label">{label}</span>
+        <button>Remove</button>
       </td>
       <td>
         <div className="counter">

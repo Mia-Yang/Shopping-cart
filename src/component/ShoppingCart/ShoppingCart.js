@@ -1,6 +1,7 @@
 import React from 'react';
 import CartItem from '../CartItem/CartItem';
 import './ShoppingCart.scss';
+import { connect } from 'react-redux';
 
 class ShoppingCart extends React.Component {
   render() {
@@ -22,9 +23,8 @@ class ShoppingCart extends React.Component {
             <th>total</th>
           </tr>
           {productList.map((product) => (
-            <tr className="item">
+            <tr className="item" key={product.id}>
               <CartItem
-                key={product.id}
                 name={product.name}
                 label={product.label}
                 quantity={product.quantity}
@@ -40,4 +40,10 @@ class ShoppingCart extends React.Component {
     );
   }
 }
-export default ShoppingCart;
+function mapStateToProps(state) {
+  return {
+    productList: state,
+  };
+}
+
+export default connect(mapStateToProps)(ShoppingCart);
