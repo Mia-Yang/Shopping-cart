@@ -40,6 +40,16 @@ export const reducer = (state = initialState, action) => {
           : product
       );
 
+    case 'DECREASE_QUANTITY':
+      let decreaseIndex = state.findIndex(
+        (product) => product.id === action.id
+      );
+      if (state[decreaseIndex].quantity === 1) {
+        return state.filter((product) => product.id !== action.id);
+      }
+      state[decreaseIndex].quantity -= 1;
+      return [...state];
+
     default:
       return state;
   }
