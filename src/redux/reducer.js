@@ -30,6 +30,9 @@ const initialState = [
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'REMOVE_ITEM':
+      return state.filter((product) => product.id !== action.id);
+
     default:
       return state;
   }
