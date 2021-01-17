@@ -5,9 +5,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
   fetchItems,
-  removeItem,
-  increaseQuantity,
-  decreaseQuantity,
+  removeItemInDB,
+  changeQuantityInDB,
 } from '../../redux/actions';
 
 class ShoppingCart extends React.Component {
@@ -17,7 +16,6 @@ class ShoppingCart extends React.Component {
 
   render() {
     const { productList } = this.props;
-    console.log(productList, '-----------props');
     return (
       <div className="shoppingCart">
         <div className="title">
@@ -45,9 +43,21 @@ class ShoppingCart extends React.Component {
                   quantity={product.quantity}
                   imgUrl={product.imgUrl}
                   price={product.price}
-                  onRemove={() => this.props.removeItem(product.id)}
-                  onIncrease={() => this.props.increaseQuantity(product.id)}
-                  onDecrease={() => this.props.decreaseQuantity(product.id)}
+                  onRemove={() => this.props.removeItemInDB(product.id)}
+                  onIncrease={() =>
+                    this.props.changeQuantityInDB(
+                      product.id,
+                      product.quantity,
+                      1
+                    )
+                  }
+                  onDecrease={() =>
+                    this.props.changeQuantityInDB(
+                      product.id,
+                      product.quantity,
+                      -1
+                    )
+                  }
                 />
               </tr>
             ))}
@@ -69,7 +79,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    { fetchItems, removeItem, increaseQuantity, decreaseQuantity },
+    {
+      fetchItems,
+      removeItemInDB,
+      changeQuantityInDB,
+    },
     dispatch
   );
 }

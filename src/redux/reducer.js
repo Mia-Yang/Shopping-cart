@@ -37,22 +37,12 @@ export const reducer = (state = [], action) => {
     case 'REMOVE_ITEM':
       return state.filter((product) => product.id !== action.id);
 
-    case 'INCREASE_QUANTITY':
+    case 'CHANGE_QUANTITY':
       return state.map((product) =>
         product.id === action.id
-          ? { ...product, quantity: (product.quantity += 1) }
+          ? { ...product, quantity: (product.quantity += action.diff) }
           : product
       );
-
-    case 'DECREASE_QUANTITY':
-      let decreaseIndex = state.findIndex(
-        (product) => product.id === action.id
-      );
-      if (state[decreaseIndex].quantity === 1) {
-        return state.filter((product) => product.id !== action.id);
-      }
-      state[decreaseIndex].quantity -= 1;
-      return [...state];
 
     default:
       return state;

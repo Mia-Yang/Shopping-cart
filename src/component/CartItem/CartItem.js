@@ -6,14 +6,20 @@ function CartItem(props) {
       <td>
         <img src={imgUrl} alt="product img" className="productImg" />
       </td>
-      <td>
+      <td className="infoCell">
         <span className="name">{name}</span>
         <span className="label">{label}</span>
-        <button onClick={props.onRemove}>Remove</button>
+        <span onClick={props.onRemove} className="remove">
+          Remove
+        </span>
       </td>
       <td>
         <div className="counter">
-          <button className="changeUnit" onClick={props.onDecrease}>
+          <button
+            className="changeUnit"
+            onClick={props.onDecrease}
+            disabled={quantity === 1 ? true : false}
+          >
             ➖
           </button>
           <span className="quantity">{quantity}</span>
@@ -22,8 +28,8 @@ function CartItem(props) {
           </button>
         </div>
       </td>
-      <td>{price}</td>
-      <td>{(quantity * price).toFixed(2)}</td>
+      <td>$ {price}</td>
+      <td>$ {(quantity * price).toFixed(2)}</td>
     </>
   );
 }

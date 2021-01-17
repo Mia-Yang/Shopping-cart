@@ -31,29 +31,31 @@ class OrderSummary extends React.Component {
     let totalCost = this.getTotalCost(productList);
     return (
       <div className="summary">
-        <h1>Order Summary</h1>
-        <hr />
-        <div>
-          <span>ITEMS {productList.length}</span>
-          <span>$ {totalCost.toFixed(2)}</span>
+        <div className="title">Order Summary</div>
+        <div className="split"></div>
+        <div className="calculate">
+          <div className="summary-subtitle total-price">
+            <span>ITEMS {productList.length}</span>
+            <span>$ {totalCost.toFixed(2)}</span>
+          </div>
+          <div className="summary-subtitle">SHIPPING</div>
+          <select
+            name="shipping"
+            id="shipping"
+            onChange={this.handleChangeShipping}
+            value={this.state.value}
+          >
+            <option value="5">standard shipping - $5</option>
+            <option value="10">express shipping - $10</option>
+          </select>
+          <div className="summary-subtitle">PROMO CODE</div>
+          <input type="text" placeholder="Enter Your Code" className="promo" />
+          <br />
+          <button className="apply">APPLY</button>
         </div>
-        <h3>SHIPPING</h3>
-        <select
-          name="shipping"
-          id="shipping"
-          onChange={this.handleChangeShipping}
-          value={this.state.value}
-        >
-          <option value="5" selected>
-            standard shipping -$5
-          </option>
-          <option value="10">express shipping -$10</option>
-        </select>
-        <h3>PROMO CODE</h3>
-        <input type="text" placeholder="Enter Your Code" /> <br />
-        <button className="apply">APPLY</button>
-        <hr />
-        <div>
+
+        <div className="split"></div>
+        <div className="summary-subtitle total-price">
           <span>TOTAL COST</span>
           <span>$ {(totalCost + this.state.shippingFee).toFixed(2)}</span>
         </div>

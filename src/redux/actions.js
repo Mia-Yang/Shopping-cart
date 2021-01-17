@@ -5,15 +5,13 @@ export const removeItem = (id) => ({
   id,
 });
 
-export const increaseQuantity = (id) => ({
-  type: 'INCREASE_QUANTITY',
-  id,
-});
-
-export const decreaseQuantity = (id) => ({
-  type: 'DECREASE_QUANTITY',
-  id,
-});
+export const removeItemInDB = (id) => {
+  return (dispatch) => {
+    fetch(`${url}/${id}`, { method: 'DELETE' })
+      .then(() => dispatch(removeItem(id)))
+      .catch((err) => console.log(err));
+  };
+};
 
 export const receiveItems = (items) => ({
   type: 'RECEIVE_ITEMS',
@@ -25,5 +23,24 @@ export const fetchItems = () => {
     fetch(url, { method: 'GET' })
       .then((res) => res.json())
       .then((data) => dispatch(receiveItems(data)));
+  };
+};
+
+export const changeQuantity = (id, diff) => ({
+  type: 'CHANGE_QUANTITY',
+  id,
+  diff,
+});
+
+export const changeQuantityInDB = (id, originQuantity, diff) => {
+  const newQuantity = { quantity: originQuantity + diff };
+  return (dispatch) => {
+    fetch(`${url}/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newQuantity),
+    })
+      .then(() => dispatch(changeQuantity(id, diff)))
+      .catch((err) => console.log(err));
   };
 };
