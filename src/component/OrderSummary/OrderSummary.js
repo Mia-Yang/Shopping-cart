@@ -36,7 +36,7 @@ class OrderSummary extends React.Component {
         <div className="calculate">
           <div className="summary-subtitle total-price">
             <span>ITEMS {productList.length}</span>
-            <span data-testid="total-price">$ {totalCost.toFixed(2)}</span>
+            <span id="without-express-fee">$ {totalCost.toFixed(2)}</span>
           </div>
           <div className="summary-subtitle">SHIPPING</div>
           <select
@@ -57,7 +57,9 @@ class OrderSummary extends React.Component {
         <div className="split"></div>
         <div className="summary-subtitle total-price">
           <span>TOTAL COST</span>
-          <span>$ {(totalCost + this.state.shippingFee).toFixed(2)}</span>
+          <span id="with-express-fee">
+            $ {(totalCost + this.state.shippingFee).toFixed(2)}
+          </span>
         </div>
         <button className="checkout">CHECK OUT</button>
       </div>

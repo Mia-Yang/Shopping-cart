@@ -1,6 +1,5 @@
-import { fireEvent, render } from '@testing-library/react';
 import OrderSummary from './OrderSummary';
-import App from '../../App';
+import util from '../../testUtil';
 
 const productList = [
   {
@@ -32,18 +31,36 @@ const productList = [
   },
 ];
 
-let orderSummary;
+let orderSummary = <OrderSummary />;
 
 describe('render orderSummary', () => {
-  beforeEach(() => {
-    orderSummary = render(
-      <App>
-        <OrderSummary props={productList} />
-      </App>
-    );
+  it('should calculate total price without express fee as 132', () => {
+    const { container } = util(orderSummary, productList);
+    const result = container.querySelector('#without-express-fee');
+    expect(result).toHaveTextContent('132');
   });
-  it('should calculate total price without express fee', () => {
-    const totalCost = orderSummary.getByTestId('total-price');
-    expect(totalCost).toEqual(132);
+
+  it('should show total price without express fee as 0 when there is no items in cart', () => {
+    const { container } = util(orderSummary, []);
+    const result = container.querySelector('#without-express-fee');
+    expect(result).toHaveTextContent('0');
+  });
+
+  it('should show total cost as 5 with express feewhen there is no items in cart', () => {
+    const { container } = util(orderSummary, []);
+    const result = container.querySelector('#with-express-fee');
+    expect(result).toHaveTextContent('5');
+  });
+
+  it('should have 2 buttons', () => {
+    const { container } = util(orderSummary, []);
+    const buttons = container.querySelectorAll('button');
+    expect(buttons.length).toEqual(2);
+  });
+
+  it('should select standard', () => {
+    const { container } = util(orderSummary, []);
+    const select = container.querySelector('select');
+    expect(select).toHaveTextContent('standard shipping');
   });
 });
