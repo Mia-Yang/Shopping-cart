@@ -6,7 +6,7 @@ const product = {
   name: 'Fifa',
   label: 'ps4',
   price: 44,
-  quantity: 1,
+  quantity: 2,
   imgUrl:
     'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.co.uk%2FElectronic-Arts-221545-FIFA-PS4%2Fdp%2FB07DLXBGN8&psig=AOvVaw2-or8qXd_e2E66fpm3NnBK&ust=1610531300354000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKjlpuKOlu4CFQAAAAAdAAAAABAN',
 };
@@ -21,6 +21,12 @@ describe('render cart item', () => {
   beforeEach(() => {
     item = render(
       <CartItem
+        id={product.id}
+        name={product.name}
+        label={product.label}
+        price={product.price}
+        quantity={product.quantity}
+        imgUrl={product.imgUrl}
         props={product}
         onRemove={onRemove}
         onDecrease={onDecrease}
@@ -43,5 +49,16 @@ describe('render cart item', () => {
   it('should call onIncrease when click remove', () => {
     fireEvent.click(item.getAllByRole('button')[1]);
     expect(onIncrease).toBeCalledTimes(1);
+  });
+
+  it('should have name as Fifa', () => {
+    expect(item.getByText('Fifa')).not.toBeNull;
+  });
+  it('should have label as ps4', () => {
+    expect(item.getByText('ps4')).not.toBeNull;
+  });
+
+  it('should have quantiyt as 4', () => {
+    expect(item.getByText('2')).not.toBeNull;
   });
 });
