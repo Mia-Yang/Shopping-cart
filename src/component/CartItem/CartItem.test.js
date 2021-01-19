@@ -1,11 +1,5 @@
 import CartItem from './CartItem';
-import {
-  fireEvent,
-  getAllByRole,
-  getByRole,
-  render,
-  screen,
-} from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
 const product = {
   id: 1,

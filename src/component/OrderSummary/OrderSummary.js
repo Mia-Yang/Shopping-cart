@@ -36,7 +36,7 @@ class OrderSummary extends React.Component {
         <div className="calculate">
           <div className="summary-subtitle total-price">
             <span>ITEMS {productList.length}</span>
-            <span>$ {totalCost.toFixed(2)}</span>
+            <span data-testid="total-price">$ {totalCost.toFixed(2)}</span>
           </div>
           <div className="summary-subtitle">SHIPPING</div>
           <select
