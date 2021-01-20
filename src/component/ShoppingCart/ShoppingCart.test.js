@@ -1,14 +1,5 @@
-import {
-  fireEvent,
-  getAllByRole,
-  getByRole,
-  render,
-  screen,
-} from '@testing-library/react';
 import ShoppingCart from './ShoppingCart';
-import CartItem from '../CartItem/CartItem';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
+import { render } from '../../testUtil';
 
 const productList = [
   {
@@ -40,24 +31,40 @@ const productList = [
   },
 ];
 
-const onRemove = jest.fn();
-const onIncrease = jest.fn();
-const onDecrease = jest.fn();
+describe('render shoppingcart', () => {
+  it('mockFetchItems should return productList', () => {
+    const mockFetchItems = jest.fn();
+    mockFetchItems.mockReturnValue(productList);
+    expect(mockFetchItems()[0].quantity).toEqual(1);
+    expect(mockFetchItems()).toHaveLength(3);
+  });
 
-let shoppingCart;
-
-describe('render shopping cart', () => {
-  beforeEach(() => {
-    shoppingCart = render(
-      <ShoppingCart
-        props={productList}
-        onRemove={onRemove}
-        onDecrease={onDecrease}
-        onIncrease={onIncrease}
-      />
+  it('should render title as Shopping Cart', () => {
+    const mockFetchItems = jest.fn();
+    mockFetchItems.mockReturnValue(productList);
+    const { container } = render(<ShoppingCart fetchItems={mockFetchItems} />, {
+      initialState: productList,
+    });
+    expect(container.querySelector('.title')).toHaveTextContent(
+      'Shopping Cart'
     );
   });
-  it('should show 3 items', () => {
-    expect(shoppingCart.find(CartItem).length).toEqual(3);
+
+  it('should show number of items as 3', () => {
+    const mockFetchItems = jest.fn();
+    mockFetchItems.mockReturnValue(productList);
+    const { container } = render(<ShoppingCart fetchItems={mockFetchItems} />, {
+      initialState: productList,
+    });
+    expect(container.querySelector('.title')).toHaveTextContent('3 Items');
+  });
+
+  it('should render three cartitems', () => {
+    const mockFetchItems = jest.fn();
+    mockFetchItems.mockReturnValue(productList);
+    const { container } = render(<ShoppingCart fetchItems={mockFetchItems} />, {
+      initialState: productList,
+    });
+    expect(container.querySelectorAll('.item')).toHaveLength(3);
   });
 });
