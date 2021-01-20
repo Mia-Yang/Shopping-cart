@@ -3,7 +3,7 @@
 button {
   border: none;
   outline: none;
-  :hover {
+  &:hover {
     cursor: pointer;
   }
 }
