@@ -49,8 +49,10 @@ Design Mockup： https://dribbble.com/shots/5311395-Shopping-Cart/attachments/53
 - 添加 order summary 中同步计算总价的功能
 - 后端搭建，连接 MongoDB
 - 添加 post， delete， patch API
-- 使用 redux thunk 中间件，从后端获取数据
+- 使用 redux thunk 中间件，从后端获取数据,不再使用 mock data
 - 修改功能，使变更商品数量时同时更改数据库中的数量
+- 添加测试
+- 添加 Dockerfile
 
 ## 组件划分
 
