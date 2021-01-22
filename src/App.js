@@ -1,5 +1,5 @@
-import ShoppingCart from './component/ShoppingCart/ShoppingCart';
-import OrderSummary from './component/OrderSummary/OrderSummary';
+import ShoppingCart from './container/ShoppingCart/ShoppingCart';
+import OrderSummary from './container/OrderSummary/OrderSummary';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';

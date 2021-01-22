@@ -1,5 +1,5 @@
 import React from 'react';
-import CartItem from '../CartItem/CartItem';
+import CartItem from '../../component/CartItem/CartItem';
 import './ShoppingCart.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
