@@ -5,7 +5,7 @@ export const removeItem = (id) => ({
   id,
 });
 
-export const removeItemInDB = (id) => {
+export const removeItemInDatabase = (id) => {
   return (dispatch) => {
     fetch(`${url}/${id}`, { method: 'DELETE' })
       .then(() => dispatch(removeItem(id)))
@@ -32,7 +32,7 @@ export const changeQuantity = (id, diff) => ({
   diff,
 });
 
-export const changeQuantityInDB = (id, originQuantity, diff) => {
+export const changeQuantityInDatabase = (id, originQuantity, diff) => {
   const newQuantity = { quantity: originQuantity + diff };
   return (dispatch) => {
     fetch(`${url}/${id}`, {
